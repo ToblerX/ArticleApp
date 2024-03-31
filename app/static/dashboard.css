@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+}
+/*
+ * Formatting the header area
+ */
+header {
+  background-color: #DFB887;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+}
+header h1.logo {
+  margin: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+header h1.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+/*
+ * Centering the body content
+ */
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+div.home {
+  padding: 10px 0 30px 0;
+  background-color: #E6E6FA;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+div.about {
+  padding: 10px 0 30px 0;
+  background-color: #E6E6FA;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+h2 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+}
+h3 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #999;
+}
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.menu {
+  float: right;
+  margin-top: 8px;
+}
+.menu li {
+  display: inline;
+}
+.menu li + li {
+  margin-left: 35px;
+}
+.menu li a {
+  color: #444;
+  text-decoration: none;
+}
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.article {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; /* Adding transition for hover effect */
+  height: 300px; /* Fixed height for article block */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.article:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Increasing shadow on hover */
+}
+
+.article h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.article p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.article-link {
+  text-decoration: none; /* Removing default link styling */
+  color: inherit; /* Inherit color from parent */
+}
+
+.article-link:hover .article {
+  background-color: #f9f9f9; /* Changing background color on hover */
+}
+
+
+.dashboard {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  margin-top: 20px;
+}
+
+.profile {
+  /*background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.profile h3 {
+  font-size: 1.5em;
+  color: #333; /* Darker text color */
+  margin-bottom: 10px;
+}
+
+.profile p {
+  margin-bottom: 5px;
+}
+
+/* Button Styles */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Add margin-top to move the button down */
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+

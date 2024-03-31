@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask app</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='dashboard.css') }}">
+  </head>
+  <body>
+    <header>
+      <div class="container upper_label">
+        <h1 class="logo">Dashboard</h1>
+        <strong><nav>
+          <ul class="menu">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <!-- Add My Profile button with conditional redirection -->
+            <li><a href="{% if 'user_id' in session %}{{ url_for('profile') }}{% else %}{{ url_for('login') }}{% endif %}">Profile</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+    <div class="container">
+      <div class="dashboard">
+        <h2>Welcome to the Dashboard</h2>
+        <div class="profile">
+          <h3>User Profile</h3>
+          <p>Name: {{ user.name }}</p>
+          <p>Surname: {{ user.surname }}</p>
+          <p>Email: {{ user.email }}</p>
+          <!-- Add more profile information as needed -->
+        </div>
+        <!-- Add logout button with conditional display -->
+        {% if 'user_id' in session %}
+        <a href="{{ url_for('logout') }}" class="button">Logout</a>
+        <!-- Add button to view articles written by the user -->
+        <a href="{{ url_for('user_articles') }}" class="button">My Articles</a>
+        {% endif %}
+        <!-- Add button to go to article editor page -->
+        <a href="{{ url_for('article_adder') }}" class="button">Add Article</a>
+      </div>
+    </div>
+  </body>
+</html>

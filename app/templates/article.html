@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='article.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">Article reader</h1>
+            <strong><nav>
+                <ul class="menu">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <!-- Add My Profile button with conditional redirection -->
+                    <li><a href="{% if 'user_id' in session %}{{ url_for('profile') }}{% else %}{{ url_for('login') }}{% endif %}">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <article class="article">
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.content }}</p>
+            <p>Author: {{ article.author.name }} {{ article.author.surname }}</p>
+        </article>
+    </div>
+</body>
+</html>

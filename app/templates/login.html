@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="container upper_label">
+    <h1 class="logo">Login page</h1>
+    <strong><nav>
+      <ul class="menu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <!-- Add My Profile button with conditional redirection -->
+        <li><a href="{% if 'user_id' in session %}{{ url_for('profile') }}{% else %}{{ url_for('login') }}{% endif %}">Profile</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container log_form">
+  <div class="login-form">
+    <h2>Login</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            <strong>{{ category.capitalize() }}:</strong> {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('login') }}" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.email.label }} {{ form.email(class="form-control", placeholder="Email") }}
+        {% for error in form.email.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.password.label }} {{ form.password(class="form-control", placeholder="Password") }}
+        {% for error in form.password.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <button type="submit" class="login-button btn btn-primary">Login</button>
+</form>
+
+    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Article</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='article_adder.css') }}">
+</head>
+<body>
+    <header>
+    <div class="container">
+        <h1 class="logo">New article</h1>
+        <strong><nav>
+            <ul class="menu">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <!-- Add My Profile button with conditional redirection -->
+                <li><a href="{% if 'user_id' in session %}{{ url_for('profile') }}{% else %}{{ url_for('login') }}{% endif %}">Profile</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <main>
+        <form action="{{ url_for('article_adder') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.title.label }}<br>
+        {{ form.title(class="form-control", placeholder="Title") }}
+        {% for error in form.title.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.content.label }}<br>
+        {{ form.content(class="form-control", placeholder="Content") }}
+        {% for error in form.content.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Article</button>
+</form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Test Website</p>
+    </footer>
+</body>
+</html>

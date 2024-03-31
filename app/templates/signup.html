@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signup.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="container upper_label">
+    <h1 class="logo">Sign up</h1>
+    <strong><nav>
+      <ul class="menu">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <!-- Add My Profile button with conditional redirection -->
+        <li><a href="{% if 'user_id' in session %}{{ url_for('profile') }}{% else %}{{ url_for('login') }}{% endif %}">Profile</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container signup_form">
+  <div class="signup-form">
+    <h2>Sign Up</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            <strong>{{ category.capitalize() }}:</strong> {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('signup') }}" method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.email.label }} {{ form.email(class="form-control", placeholder="Email") }}
+        {% for error in form.email.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.name.label }} {{ form.name(class="form-control", placeholder="Name") }}
+        {% for error in form.name.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.surname.label }} {{ form.surname(class="form-control", placeholder="Surname") }}
+        {% for error in form.surname.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <div class="form-group">
+        {{ form.password.label }} {{ form.password(class="form-control", placeholder="Password") }}
+        {% for error in form.password.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+    <button type="submit" class="signup-button btn btn-primary">Sign Up</button>
+</form>
+
+    <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+  </div>
+</div>
+
+</body>
+</html>
